@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="all.min.css">
+    <link rel="stylesheet" href="/chat/chat.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/chat/chat.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div id="main-5bt">
+            <a href="/mn_proj/another_file/main.html"><button class="bar"><img class="bar-cn" src="https://c.animaapp.com/CWefXrO2/img/home.svg" /></button></a>
+            <a href="/mn_proj/another_file/calender_page/calendar.html"><button class="bar"><img class="bar-cn" src="https://c.animaapp.com/CWefXrO2/img/calendar.svg" /></button></a>
+            <a href="/mn_proj/Marketreashers/market.html"><button class="bar"><img class="bar-cn" src="https://c.animaapp.com/CWefXrO2/img/image-1@2x.png" /></button></a>
+            <a href="/mn_proj/another_file/Report/report.html"><button class="bar"><img class="bar-cn" src="https://c.animaapp.com/CWefXrO2/img/image@2x.png" /></button></a>
+            <a href="/mn_proj/another_file/Task/task.html"><button class="bar"><img class="bar-cn" src="https://c.animaapp.com/CWefXrO2/img/file-plus.svg" /></button></a>
+        </div>
+        <div id="main-2bt">
+            <button class="bar"><img class="bar-cn" src="https://c.animaapp.com/CWefXrO2/img/settings.svg" /></button>
+            <button class="bar"><img class="bar-cn" src="https://c.animaapp.com/CWefXrO2/img/log-out.svg" /></button>
+        </div>
+    </nav>
+    <main>
+        <div id="top-main">
+            <div class="wlcm">
+                <h1 id="welcomeMessage">Welcome</h1>
+
+                <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const fullName = localStorage.getItem("fullName");  // ✅ Get full name
+                    if (fullName) {
+                        const firstName = fullName.split(" ")[0];  // ✅ Extract first name
+                        document.getElementById("welcomeMessage").textContent = `Hi, ${firstName}`;
+                    }
+                });
+                </script>
+                
+            <h2>here is your agenda for today</h2>
+        </div>
+            <div class="search">
+           <form action="">
+            <input class="search-input" type="search" placeholder="search">
+           </form>
+        </div>
+        <button class="notification" id="notificationButton" style="position: relative;">
+            <img src="https://c.animaapp.com/CWefXrO2/img/notifications.svg" style="width: 43px;">
+            <div id="notificationBadge" style="display:none;"></div>
+          </button>
+          
+          <div id="notificationBox" style="display:none;">
+            <div class="notification-box-header">
+                <h3>Notifications</h3>
+                <button id="closeNotificationBox" class="close-btn">✖</button>
+            </div>
+            <div id="notificationsList"></div>
+        </div>
+
+        <button class="profile-btn"><img class="profile-pic" src="/mn_proj/another_file/pic/download (2).png"></button>
+ 
+        </div>
+        <div class="content">
+          <div class="calendar">
+            <div class="month">
+                <ul>
+                    <li class="prev" onclick="moveDate(-1)">&#10094;</li>
+                    <li class="next" onclick="moveDate(1)">&#10095;</li>
+                    <li id="monthYear">December<br><span style="font-size:18px">2024</span></li>
+                </ul>
+            </div>
+    
+            <ul class="weekdays">
+                <li>Mo</li>
+                <li>Tu</li>
+                <li>We</li>
+                <li>Th</li>
+                <li>Fr</li>
+                <li>Sa</li>
+                <li>Su</li>
+            </ul>
+    
+            <ul class="days" id="days">
+            </ul>
+          </div>
+          <div class="Urgent-tasks">
+            <h1 id="ut">Urgent Tasks</h1>
+            <div class="ut-item">
+                <div class="ut-circle"></div>
+                <div class="ut-text">
+                    <h3>Finish Monthly Reporting</h3>
+                    <span class="ut-date" style="color: rgb(255, 0, 0);">⬤ Today</span>
+                </div>
+            </div>
+            <hr class="ut-divider">
+            <div class="ut-item">
+                <div class="ut-circle"></div>
+                <div class="ut-text">
+                    <h3>Report Signing</h3>
+                    <span class="ut-date" style="color: rgb(255, 0, 0);">⬤ Today</span>
+                </div>
+            </div>
+            <hr class="ut-divider">
+            <div class="ut-item">
+                <div class="ut-circle"></div>
+                <div class="ut-text">
+                    <h3>Market Overview Keynote</h3>
+                    <span class="ut-date" style="color: rgb(255, 0, 0);">⬤ Today</span>
+                </div>
+            </div>
+        </div>
+        
+          
+        <div class="project-directory">
+            <h3 id="pt">Project Directory</h3>
+            <div id="projects" class="project">
+            </div>
+            <div class="add-button">
+                <button id="addMoreBtn">+ Add More</button>
+            </div>
+        </div>
+
+          <div class="new-comments">
+            <h3 id="pt">New Comments</h3>
+            <div class="comment">
+                <img src="./public/avatar1.png" alt="John S">
+                <div class="comment-content">
+                    <p class="comment-author">John S <span>In Market Research 2024</span></p>
+                    <p class="comment-text">Find My Keynote Attached...</p>
+                </div>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="comment">
+                <img src="./public/avatar2.png" alt="Dana R">
+                <div class="comment-content">
+                    <p class="comment-author">Dana R <span>In Market Research 2024</span></p>
+                    <p class="comment-text">I Have Added Some New Data, Check...</p>
+                </div>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+          <div class="org">
+            <div class="RGB-color">
+                <span class="bo-co" style="background-color: #f5ecff;">#Research
+                    Survey 
+                    <br>
+                    design
+                    <button class="arrow-button" style="padding-top: 13px;"></button>
+                </span>
+                <span class="bo-co" style="background-color:  #e3feeb;">#Research
+                    Survey 
+                    <br>
+                    design
+                    <button class="arrow-button" style="padding-top: 13px;"></button>
+                </span>
+                <span class="bo-co" style="background-color: #fcfce5;">#Research
+                    Survey 
+                    <br>
+                    design
+                    <button class="arrow-button" style="padding-top: 13px;"></button>
+                </span>
+            </div>
+          </div>
+          <div class="team-directory">
+            <h2>Team Directory</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="profile1.jpg" alt="Dana">
+                    <h3>Dana R.</h3>
+                    <p>Project Manager</p>
+                </div>
+                <div class="team-member">
+                    <img src="profile2.jpg" alt="John">
+                    <h3>John S.</h3>
+                    <p>Key Account Plann.</p>
+                </div>
+                <div class="team-member">
+                    <img src="profile3.jpg" alt="Ali">
+                    <h3>Ali M.</h3>
+                    <p>Account Manager</p>
+                </div>
+                <div class="team-member">
+                    <img src="profile4.jpg" alt="Sara">
+                    <h3>Sara A.</h3>
+                    <p>Digital Manager</p>
+                </div>
+            </div>
+          </div>
+        
+        </div>
+    </main>
+<div id="chat-circle">
+    <img src="/chat/chat-icon.png" alt="Chat" width="40">
+</div>
+
+<div id="chat-box">
+    <div id="chat-header">
+        <span id="chat-title">Messenger</span>
+        <button id="close-chat">✖</button>
+    </div>
+
+    <div id="user-list">
+        <p>Loading users...</p>
+    </div>
+
+    <div id="chat-window" style="display: none;">
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Type a message...">
+        <button id="send-message">Send</button>
+    </div>
+</div>
+
+</body>
+<script src="js.js"></script>
+<script src="/logout.js"></script>
+
+</html>
